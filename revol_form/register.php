@@ -74,6 +74,7 @@
             </h2>
             <h6 style="color: #5ebd61;">One team should comprise of a minimum of 3 members and a maximum of up to 4 members.</h6>
 
+            <i class="bi bi-download"></i> &nbsp;<a href="../revol_form/Delegate booklet revolux.pdf" target="_blank" style="color: black;">Delegate Booklet</a>
 
 
             <div class="entry-content">

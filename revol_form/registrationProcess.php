@@ -52,7 +52,7 @@ $rs_num=$rs->num_rows;
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'pamalidevanga2002@gmail.com';
-                    $mail->Password = 'cxdgyjfbgesdtxma';
+                    $mail->Password = '*********';
                     $mail->SMTPSecure = 'ssl';
                     $mail->Port = 465;
                     $mail->setFrom('pamalidevanga2002@gmail.com', 'RevolUX 3.0');

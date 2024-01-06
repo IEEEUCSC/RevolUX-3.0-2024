@@ -91,14 +91,14 @@ function register(){
      }else if(nic1.value.length==0||nic2.value.length==0||nic3.value.length==0){
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Complete the NIC details of the members";
-     }else if(name4.value.length!=0){
+     }else if(name4.value.length!=0 ){
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Complete the NIC details of the members";
     // team members count addition 
     }
-    else if(members.value.length==0){
+    else if(members.value.length==0 ){
         alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="One team should comprise of a minimum of 3 members and a maximum of up to 4 members.";
+        alertdiv.innerHTML="Check the number of members";
      }else{
         
         alertdiv.className="alert alert-success d-none";
@@ -123,6 +123,13 @@ function register(){
         form.append("team",team.value);
         form.append("university",university.value);
 
+        form.append("nic1",nic1.value);
+        form.append("nic2",nic2.value);
+        form.append("nic3",nic3.value);
+        form.append("nic4",nic4.value);
+
+        form.append("members",members.value);
+
         form.append("length_email4",email4.value.length);
 
         var r=new XMLHttpRequest();
@@ -130,7 +137,7 @@ function register(){
         r.onreadystatechange=function(){
             if(r.readyState==4){
                 var t =this.responseText;
-                alert(t);
+                //alert(t);
                 if(t=="success"){
                     alertdiv.className="alert alert-success d-block";
                     t='The team registered for the competition';

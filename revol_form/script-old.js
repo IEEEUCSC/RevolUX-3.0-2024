@@ -22,6 +22,16 @@ function register(){
     var email4=document.getElementById("email4");
     var mobile4=document.getElementById("mobile4");
 
+//NIC details 
+    var nic1=document.getElementById("nic1");
+    var nic2=document.getElementById("nic2");
+    var nic3=document.getElementById("nic3");
+    var nic4=document.getElementById("nic4");
+
+    var members=document.getElementById("memCount");
+
+
+
    
      if(team.value.length==0){
         //alert("team name is blank");
@@ -77,8 +87,20 @@ function register(){
      }else if((name4.value.length!=0 && (email4.value.length==0 || mobile4.value.length==0)) ||(name4.value.length==0 && (email4.value.length!=0 || mobile4.value.length!=0)) ){
          alertdiv.className="alert alert-success d-block";
          alertdiv.innerHTML="Complete the details of the fourth member";
-
+    //nic addition
+     }else if(nic1.value.length==0||nic2.value.length==0||nic3.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Complete the NIC details of the members";
+     }else if(name4.value.length!=0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Complete the NIC details of the members";
+    // team members count addition 
+    }
+    else if(members.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="One team should comprise of a minimum of 3 members and a maximum of up to 4 members.";
      }else{
+        
         alertdiv.className="alert alert-success d-none";
         var form=new FormData;
 
@@ -108,7 +130,7 @@ function register(){
         r.onreadystatechange=function(){
             if(r.readyState==4){
                 var t =this.responseText;
-                //alert(t);
+                alert(t);
                 if(t=="success"){
                     alertdiv.className="alert alert-success d-block";
                     t='The team registered for the competition';

@@ -38,6 +38,9 @@ function register(){
         alertdiv.className="alert alert-success d-block";
         t="Team name is blank";
         alertdiv.innerHTML=t;
+     } else if(members.value.length==0 ){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Number of members is blank";
      }else if(university.value.length==0){
         
         alertdiv.className="alert alert-success d-block";
@@ -56,8 +59,10 @@ function register(){
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Email of the first member is blank";
         
-    }
-   else if(name2.value.length==0){
+    }else if(nic1.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="NIC of the first member is blank";
+    }else if(name2.value.length==0){
         alertdiv.className="alert alert-success d-block";
          t="One team should comprise of a minimum of 3 members and a maximum of up to 4 members."
          alertdiv.innerHTML=t;
@@ -70,6 +75,9 @@ function register(){
          alertdiv.className="alert alert-success d-block";
          alertdiv.innerHTML="Email of the second member is blank";
         
+    }else if(nic2.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="NIC of the second member is blank";
     }else if(name3.value.length==0){
          alertdiv.className="alert alert-success d-block";
          t="One team should comprise of a minimum of 3 members and a maximum of up to 4 members."
@@ -84,22 +92,19 @@ function register(){
          alertdiv.className="alert alert-success d-block";
          alertdiv.innerHTML="Email of the third member is blank";
         
-     }else if((name4.value.length!=0 && (email4.value.length==0 || mobile4.value.length==0)) ||(name4.value.length==0 && (email4.value.length!=0 || mobile4.value.length!=0)) ){
+     }else if(nic3.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="NIC of the third member is blank";
+    }else if((name4.value.length!=0 && (email4.value.length==0 || mobile4.value.length==0)) ||(name4.value.length==0 && (email4.value.length!=0 || mobile4.value.length!=0)) ){
          alertdiv.className="alert alert-success d-block";
          alertdiv.innerHTML="Complete the details of the fourth member";
     //nic addition
-     }else if(nic1.value.length==0||nic2.value.length==0||nic3.value.length==0){
+     }else if(nic4.value.length==0){
         alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Complete the NIC details of the members";
-     }else if(name4.value.length!=0 ){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Complete the NIC details of the members";
-    // team members count addition 
+        alertdiv.innerHTML="NIC of the last member is blank";
+    
     }
-    else if(members.value.length==0 ){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Check the number of members";
-     }else{
+   else{
         
         alertdiv.className="alert alert-success d-none";
         var form=new FormData;

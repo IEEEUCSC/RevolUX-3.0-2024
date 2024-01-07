@@ -2,11 +2,21 @@ function validateInput(value, errorMessage) {
     var alertdiv = document.getElementById("alert-div");
 
     if (value.length === 0) {
-        alertdiv.className = "alert alert-success d-block";
+        alertdiv.className = "alert alert-warning d-block";
         alertdiv.innerHTML = errorMessage;
         return false;
     }
     return true;
+}
+
+function validateNIC(nic) {
+    var nicPatternOld = /^[0-9]{9}[vVxX]$/;
+    var nicPatternNew = /^[0-9]{12}$/;
+
+    if (nicPatternOld.test(nic) || nicPatternNew.test(nic))
+        return true;
+
+    return false;
 }
 
 function register() {
@@ -20,17 +30,27 @@ function register() {
     if (!validateInput(university.value, "Select your University"))
         return;
 
+    // var nic1 = document.getElementById("nic1");
+    // var nic2 = document.getElementById("nic2");
+    // var nic3 = document.getElementById("nic3");
+    // var nic4 = document.getElementById("nic4");
+
     for (let i = 1; i <= 3; i++) {
         var name = document.getElementById("name" + i);
         var email = document.getElementById("email" + i);
         var mobile = document.getElementById("mobile" + i);
+        var nic = document.getElementById("nic" + i);
 
-        if (!validateInput(name.value, "One team should comprise of minimum of 3 members and a maximum of 4 members.")) {
+        if (!validateInput(name.value, "One team should comprise of a minimum 3 members and a maximum of 4 members.")) {
             return;
         }
 
+        // validate nic
+        if (!validateNIC(nic.value) && !validateInput("", "Invalid NIC number"))
+            return;
+
         if (mobile.value.length === 0 || mobile.value.length !== 10) {
-            alertdiv.className = "alert alert-success d-block";
+            alertdiv.className = "alert alert-warning d-block";
             alertdiv.innerHTML = "Mobile number should be 10 digits";
             return;
         }
@@ -40,36 +60,36 @@ function register() {
         }
     }
 
-    if ((name4.value.length !== 0 && (email4.value.length === 0 || mobile4.value.length === 0)) || (name4.value.length === 0 && (email4.value.length !== 0 || mobile4.value.length !== 0))) {
-        alertdiv.className = "alert alert-success d-block";
+    if (Math.max(name4.value.length, email4.value.length, mobile4.value.length, nic4.value.length) > 0
+        && Math.min(name4.value.length, email4.value.length, mobile4.value.length, nic4.value.length) === 0) {
+        alertdiv.className = "alert alert-warning d-block";
         alertdiv.innerHTML = "Complete the details of the fourth member";
         return;
     }
 
+    // if ((name4.value.length !== 0 &&
+    //     (email4.value.length === 0 || mobile4.value.length === 0)) ||
+    //     (name4.value.length === 0 && (email4.value.length !== 0 || mobile4.value.length !== 0))) {
+    //     alertdiv.className = "alert alert-success d-block";
+    //     alertdiv.innerHTML = "Complete the details of the fourth member";
+    //     return;
+    // }
+
     // ajax
     var form = new FormData();
-    var form = new FormData();
 
-    form.append("name1", name1.value);
-    form.append("email1", email1.value);
-    form.append("mobile1", mobile1.value);
-
-    form.append("name2", name2.value);
-    form.append("email2", email2.value);
-    form.append("mobile2", mobile2.value);
-
-    form.append("name3", name3.value);
-    form.append("email3", email3.value);
-    form.append("mobile3", mobile3.value);
-
-    form.append("name4", name4.value);
-    form.append("email4", email4.value);
-    form.append("mobile4", mobile4.value);
+    for (let i = 1; i <= 4; i++) {
+        form.append("name" + i, document.getElementById("name" + i).value);
+        form.append("email" + i, document.getElementById("email" + i).value);
+        form.append("mobile" + i, document.getElementById("mobile" + i).value);
+        form.append("nic" + i, document.getElementById("nic" + i).value);
+    }
 
     form.append("team", team.value);
     form.append("university", university.value);
 
-    form.append("length_email4",email4.value.length);
+    form.append("length_email4", email4.value.length);
+    form.append("members", memCount.value);
     form.append("register", "register");
 
     // fetch("registrationProcess", {

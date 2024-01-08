@@ -1,3 +1,15 @@
+const select = document.getElementById('select');
+
+
+select.addEventListener('change', function () {
+    for (let otherDiv of document.querySelectorAll('#default div')) {
+        otherDiv.style.display = 'none';
+    }
+    
+    const div = document.getElementById(this.value);
+    div.style.display = 'block';
+});
+
 function register(){
    
     var alertdiv=document.getElementById("alert-div");
@@ -28,7 +40,7 @@ function register(){
     var nic3=document.getElementById("nic3");
     var nic4=document.getElementById("nic4");
 
-    //var members=document.getElementById("memCount");
+    var members=document.getElementById("select");
 
 
 
@@ -39,16 +51,26 @@ function register(){
         t="Team name is blank";
         alertdiv.innerHTML=t;
      } 
-    //  else if(members.value.length==0 ){
-    //     alertdiv.className="alert alert-success d-block";
-    //     alertdiv.innerHTML="Number of members is blank";
+     else if(members.value.length==0 ){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Number of members is blank";
      
-    // }
+    }
     else if(university.value.length==0){
         
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Select your University";
-     }else if(name1.value.length==0){
+    }else if(university.value=="other"){
+        var otherUni=document.getElementById("universityOther");
+        otherUni.className="form-control d-block mt-3";
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Mention your university";
+       
+        university=otherUni;
+        
+
+
+    }else if(name1.value.length==0){
         alertdiv.className="alert alert-success d-block";
         t="One team should comprise of a minimum of 3 members and a maximum of up to 4 members."
         alertdiv.innerHTML=t;
@@ -108,7 +130,7 @@ function register(){
     
     }
    else{
-        
+        //alert(university.value);
         alertdiv.className="alert alert-success d-none";
         var form=new FormData;
 
@@ -136,7 +158,7 @@ function register(){
         form.append("nic3",nic3.value);
         form.append("nic4",nic4.value);
 
-        //form.append("members",members.value);
+        
 
         form.append("length_email4",email4.value.length);
 

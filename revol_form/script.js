@@ -4,6 +4,7 @@ function validateInput(value, errorMessage) {
     if (value.length === 0) {
         alertdiv.className = "alert alert-warning d-block";
         alertdiv.innerHTML = errorMessage;
+        alertUser("warning", errorMessage);
         return false;
     }
     return true;
@@ -17,6 +18,26 @@ function validateNIC(nic) {
         return true;
 
     return false;
+}
+
+function alertUser(type, desc) {
+    var $div = $("<div>", {
+        class: "custom-alert " + type + "-alert"
+    });
+    $div.append("<div class='alert-text'>" + desc + "</div\>")
+
+    var count = $(".custom-alert").length;
+    $(".custom-alert").fadeOut(function () {
+        $(this).remove();
+    });
+
+    $div.hide().delay(count * 200).appendTo("body").fadeIn(function () {
+        setTimeout(function () {
+            $div.fadeOut(function () {
+                $div.remove();
+            });
+        }, 3000);
+    });
 }
 
 function register() {
@@ -52,6 +73,7 @@ function register() {
         if (mobile.value.length === 0 || mobile.value.length !== 10) {
             alertdiv.className = "alert alert-warning d-block";
             alertdiv.innerHTML = "Mobile number should be 10 digits";
+            alertUser("warning", "Mobile number should be 10 digits");
             return;
         }
 
@@ -64,6 +86,7 @@ function register() {
         && Math.min(name4.value.length, email4.value.length, mobile4.value.length, nic4.value.length) === 0) {
         alertdiv.className = "alert alert-warning d-block";
         alertdiv.innerHTML = "Complete the details of the fourth member";
+        alertUser("warning", "Complete the details of the fourth member");
         return;
     }
 
@@ -89,7 +112,7 @@ function register() {
     form.append("university", university.value);
 
     form.append("length_email4", email4.value.length);
-    form.append("members", memCount.value);
+    // form.append("members", memCount.value);
     form.append("register", "register");
 
     // fetch("registrationProcess", {
@@ -104,20 +127,25 @@ function register() {
             if (data.status === "200") {
                 alertdiv.className = "alert alert-success d-block";
                 alertdiv.innerHTML = data.desc;
+                alertUser("success", data.desc);
             } else if (data.status === "403") {
                 alertdiv.className = "alert alert-danger d-block";
                 alertdiv.innerHTML = data.desc;
+                alertUser("danger", data.desc);
             } else if (data.status === "400") {
                 alertdiv.className = "alert alert-danger d-block";
                 alertdiv.innerHTML = data.desc;
+                alertUser("danger", data.desc);
             } else {
                 alertdiv.className = "alert alert-danger d-block";
                 alertdiv.innerHTML = "Unexpected response from the server";
+                alertUser("danger", "Unexpected response from the server");
             }
         })
         .catch(error => {
             alertdiv.className = "alert alert-danger d-block";
             alertdiv.innerHTML = "Error occurred during the request. Please try again later.";
+            alertUser("danger", "Error occurred during the request. Please try again later.");
             console.error("Error:", error);
         });
 }

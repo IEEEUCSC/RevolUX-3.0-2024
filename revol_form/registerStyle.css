@@ -2326,3 +2326,58 @@ section {
   }
 }
 /* form */
+
+/* custom alert */
+
+.custom-alert {
+  position: fixed;
+  bottom: 5vh;
+  z-index: 1060;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.custom-alert .alert-text {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: #000000;
+  border-radius: 10px;
+  padding: 0.7rem 1.7rem;
+
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.custom-alert.danger-alert .alert-text {
+  background: #e35d6a;
+  background: #f53d3d;
+}
+
+.custom-alert.warning-alert .alert-text {
+  color: #856404;
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+}
+
+.custom-alert.info-alert .alert-text {
+  background: #3d8bfd;
+}
+
+.custom-alert.success-alert .alert-text {
+  background: #1db954;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+@media (orientation: portrait) {
+  .custom-alert {
+    width: 90%;
+  }
+
+  .custom-alert .alert-text {
+    font-size: 1rem;
+  }
+}

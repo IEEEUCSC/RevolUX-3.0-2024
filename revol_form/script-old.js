@@ -28,7 +28,7 @@ function register(){
     var nic3=document.getElementById("nic3");
     var nic4=document.getElementById("nic4");
 
-    var members=document.getElementById("memCount");
+    //var members=document.getElementById("memCount");
 
 
 
@@ -38,10 +38,13 @@ function register(){
         alertdiv.className="alert alert-success d-block";
         t="Team name is blank";
         alertdiv.innerHTML=t;
-     } else if(members.value.length==0 ){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Number of members is blank";
-     }else if(university.value.length==0){
+     } 
+    //  else if(members.value.length==0 ){
+    //     alertdiv.className="alert alert-success d-block";
+    //     alertdiv.innerHTML="Number of members is blank";
+     
+    // }
+    else if(university.value.length==0){
         
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Select your University";
@@ -133,7 +136,7 @@ function register(){
         form.append("nic3",nic3.value);
         form.append("nic4",nic4.value);
 
-        form.append("members",members.value);
+        //form.append("members",members.value);
 
         form.append("length_email4",email4.value.length);
 

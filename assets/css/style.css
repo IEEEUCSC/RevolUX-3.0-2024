@@ -1080,7 +1080,11 @@ section {
   border-color: #5ebd61;
   border-radius: 28px;
 }
-
+.schedule-border1{
+  border: solid;
+  border-color: rgb(171, 171, 171);
+  border-radius: 28px;
+}
 .testimonials .testimonial-item {
   box-sizing: content-box;
   padding: 30px;
@@ -1090,9 +1094,39 @@ section {
   position: relative;
   background: #252525;
   border-radius: 15px;
+
+
+  
+}
+.testimonials .testimonial-item1 {
+  box-sizing: content-box;
+  padding: 30px;
+  margin: 30px 15px;
+  min-height: 200px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  background: #252525;
+  border-radius: 15px;
+
+
+  /* -webkit-filter: blur(2px);
+-moz-filter: blur(2px);
+-o-filter: blur(2px);
+-ms-filter: blur(2px);
+filter: blur(2px); */
+/* width: 100px; */
+/* height: 100px; */
+/* background-color: #ccc; */
 }
 
 .testimonials .testimonial-item .testimonial-img {
+  width: 90px;
+  border-radius: 10px;
+  border: 6px solid #fff;
+  float: left;
+  margin: 0 10px 0 0;
+}
+.testimonials .testimonial-item1 .testimonial-img {
   width: 90px;
   border-radius: 10px;
   border: 6px solid #fff;
@@ -1106,10 +1140,20 @@ section {
   margin: 25px 0 5px 0;
   color: #111;
 }
-
+.testimonials .testimonial-item1 h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 25px 0 5px 0;
+  color: rgb(171, 171, 171);
+}
 .testimonials .testimonial-item h4 {
   font-size: 14px;
   color: #999;
+  margin: 0;
+}
+.testimonials .testimonial-item1 h4 {
+  font-size: 14px;
+  color: rgb(171, 171, 171);
   margin: 0;
 }
 

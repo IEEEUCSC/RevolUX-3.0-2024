@@ -1,3 +1,16 @@
+const select = document.getElementById('select');
+
+
+select.addEventListener('change', function () {
+    for (let otherDiv of document.querySelectorAll('#default div')) {
+        otherDiv.style.display = 'none';
+    }
+    
+    const div = document.getElementById(this.value);
+    div.style.display = 'block';
+});
+
+
 function validateInput(value, errorMessage) {
     var alertdiv = document.getElementById("alert-div");
 

@@ -51,6 +51,8 @@ $(document).ready(function () {
     });
 });
 
+let last_submit = 1;
+
 function workshop01() {
     var uni = document.getElementById("university");
     var other = document.getElementById("universityOther");
@@ -93,38 +95,47 @@ function workshop01() {
 
     form.append("register", "register");
 
-    // let url = "http://127.0.0.1/saliya.me.aws/ieeesb/revolux3/workshop01";
-    let url = "https://saliya.me/ieeesb/revolux3/workshop01";
-    fetch(url, {
-        method: "POST",
-        body: form,
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "200") {
-                alertdiv.className = "alert alert-success d-block";
-                alertdiv.innerHTML = data.desc;
-                alertUser("success", data.desc);
-            } else if (data.status === "403") {
-                alertdiv.className = "alert alert-danger d-block";
-                alertdiv.innerHTML = data.desc;
-                alertUser("danger", data.desc);
-            } else if (data.status === "400") {
-                alertdiv.className = "alert alert-danger d-block";
-                alertdiv.innerHTML = data.desc;
-                alertUser("danger", data.desc);
-            } else {
-                alertdiv.className = "alert alert-danger d-block";
-                alertdiv.innerHTML = "Unexpected response from the server";
-                alertUser("danger", "Unexpected response from the server");
-            }
+    if (last_submit === 1) {
+        last_submit = 0;
+
+        // let url = "http://127.0.0.1/saliya.me.aws/ieeesb/revolux3/workshop01";
+        let url = "https://saliya.me/ieeesb/revolux3/workshop01";
+        fetch(url, {
+            method: "POST",
+            body: form,
         })
-        .catch(error => {
-            alertdiv.className = "alert alert-danger d-block";
-            alertdiv.innerHTML = "Error occurred during the request. Please try again later.";
-            alertUser("danger", "Error occurred during the request. Please try again later.");
-            console.error("Error:", error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "200") {
+                    alertdiv.className = "alert alert-success d-block";
+                    alertdiv.innerHTML = data.desc;
+                    alertUser("success", data.desc);
+                } else if (data.status === "403") {
+                    alertdiv.className = "alert alert-danger d-block";
+                    alertdiv.innerHTML = data.desc;
+                    alertUser("danger", data.desc);
+                } else if (data.status === "400") {
+                    alertdiv.className = "alert alert-danger d-block";
+                    alertdiv.innerHTML = data.desc;
+                    alertUser("danger", data.desc);
+                } else {
+                    alertdiv.className = "alert alert-danger d-block";
+                    alertdiv.innerHTML = "Unexpected response from the server";
+                    alertUser("danger", "Unexpected response from the server");
+                }
+
+                last_submit = 1;
+            })
+            .catch(error => {
+                alertdiv.className = "alert alert-danger d-block";
+                alertdiv.innerHTML = "Error occurred during the request. Please try again later.";
+                alertUser("danger", "Error occurred during the request. Please try again later.");
+                console.error("Error:", error);
+
+                last_submit = 1;
+            });
+    } else
+        alertUser("warning", "Please wait for a moment until the request is processed");
 
     return
 }

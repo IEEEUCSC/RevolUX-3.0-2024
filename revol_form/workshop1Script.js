@@ -8,59 +8,123 @@ function validateNIC(nic) {
     return false;
 }
 
-function workshop01(){
-    //alert("hi");
-    var uni=document.getElementById("university");
-    var other=document.getElementById("universityOther");
-    var name=document.getElementById("name");
-    var mobile=document.getElementById("mobile");
-    var email=document.getElementById("email");
-    var alertdiv=document.getElementById("alert-div");
-    var nic=document.getElementById("nic");
-    if(uni.value.length==0){
-        //alert("hello");
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Select your University";
-    }
-    // else if(uni.value=="other" && other.className=="form-control d-none mt-3"){
-    //     //alert("hello2");
-    //     other.className="form-control d-block mt-3";
-    // }else if(other.className=="form-control d-block mt-3" && other.value.length==0){
-    //     //alert("hello3");
-    //     alertdiv.className="alert alert-success d-block";
-    //     alertdiv.innerHTML="Mention your University";
-    
-    // }else if(other.value.length!==0){
-    //     uni=other;
-    //     //alert(uni.value);
-    // }
-    else if(name.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Enter your name";
-    }else if(mobile.value.length!==10|| mobile.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Mobile is blank";
-    }else if(email.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Enter your email";
-    }else  if (!validateNIC(nic.value) ){
-        //return;
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Enter your NIC";
-    }else{
-        //alert("success");
-        var form=new FormData;
+function alertUser(type, desc) {
+    var $div = $("<div>", {
+        class: "custom-alert " + type + "-alert"
+    });
+    $div.append("<div class='alert-text'>" + desc + "</div\>")
 
-        form.append("uni",uni.value);
-        form.append("name",name.value);
-        form.append("mobile",mobile.value);
-        form.append("email",email.value);
-        form.append("nic",nic.value);
+    var count = $(".custom-alert").length;
+    $(".custom-alert").fadeOut(function () {
+        $(this).remove();
+    });
 
+    $div.hide().delay(count * 200).appendTo("body").fadeIn(function () {
+        setTimeout(function () {
+            $div.fadeOut(function () {
+                $div.remove();
+            });
+        }, 3000);
+    });
+}
 
+function validateInput(value, errorMessage) {
+    var alertdiv = document.getElementById("alert-div");
 
-
-
+    if (value == null || value.length === 0) {
+        alertdiv.className = "alert alert-warning d-block";
+        alertdiv.innerHTML = errorMessage;
+        alertUser("warning", errorMessage);
+        return false;
     }
 
+    return true;
+}
+
+$(document).ready(function () {
+    $("#university").change(function () {
+        if ($(this).val() == "other") {
+            $("#universityOther").removeClass("d-none");
+            $("#universityOther").slideDown();
+        } else
+            $("#universityOther").slideUp();
+    });
+});
+
+function workshop01() {
+    var uni = document.getElementById("university");
+    var other = document.getElementById("universityOther");
+    var name = document.getElementById("name");
+    var mobile = document.getElementById("mobile");
+    var email = document.getElementById("email");
+    var alertdiv = document.getElementById("alert-div");
+    var nic = document.getElementById("nic");
+
+    let id_arr = ["university", "name", "mobile", "email", "nic"];
+    let err_arr = ["Select your University", "Enter your name", "Mobile is blank", "Enter your email", "Enter your NIC"];
+    for (let i = 0; i < id_arr.length; i++) {
+        if (!validateInput($("#" + id_arr[i]).val(), err_arr[i]))
+            return;
+    }
+
+    if (!validateNIC(nic.value) && !validateInput("", "Invalid NIC number"))
+        return;
+
+    if (mobile.value.length === 0 || mobile.value.length !== 10) {
+        validateInput("", "Mobile number should be 10 digits");
+        return;
+    }
+
+    let university = document.getElementById("university");
+
+    var form = new FormData;
+    if (uni.value == "other") {
+        if (!validateInput(other.value, "Enter your University name"))
+            return;
+
+        university = other.value;
+        form.append("university", other.value);
+    } else
+        form.append("university", university.value);
+
+    for (let i = 1; i < id_arr.length; i++) {
+        form.append(id_arr[i], document.getElementById(id_arr[i]).value);
+    }
+
+    form.append("register", "register");
+
+    // let url = "http://127.0.0.1/saliya.me.aws/ieeesb/revolux3/workshop01";
+    let url = "https://saliya.me/ieeesb/revolux3/workshop01";
+    fetch(url, {
+        method: "POST",
+        body: form,
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "200") {
+                alertdiv.className = "alert alert-success d-block";
+                alertdiv.innerHTML = data.desc;
+                alertUser("success", data.desc);
+            } else if (data.status === "403") {
+                alertdiv.className = "alert alert-danger d-block";
+                alertdiv.innerHTML = data.desc;
+                alertUser("danger", data.desc);
+            } else if (data.status === "400") {
+                alertdiv.className = "alert alert-danger d-block";
+                alertdiv.innerHTML = data.desc;
+                alertUser("danger", data.desc);
+            } else {
+                alertdiv.className = "alert alert-danger d-block";
+                alertdiv.innerHTML = "Unexpected response from the server";
+                alertUser("danger", "Unexpected response from the server");
+            }
+        })
+        .catch(error => {
+            alertdiv.className = "alert alert-danger d-block";
+            alertdiv.innerHTML = "Error occurred during the request. Please try again later.";
+            alertUser("danger", "Error occurred during the request. Please try again later.");
+            console.error("Error:", error);
+        });
+
+    return
 }

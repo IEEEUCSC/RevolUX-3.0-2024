@@ -1,14 +1,14 @@
-const select = document.getElementById('select');
+//const select = document.getElementById('select');
 
 
-select.addEventListener('change', function () {
-    for (let otherDiv of document.querySelectorAll('#default div')) {
-        otherDiv.style.display = 'none';
-    }
+// select.addEventListener('change', function () {
+//     for (let otherDiv of document.querySelectorAll('#default div')) {
+//         otherDiv.style.display = 'none';
+//     }
     
-    const div = document.getElementById(this.value);
-    div.style.display = 'block';
-});
+//     const div = document.getElementById(this.value);
+//     div.style.display = 'block';
+// });
 
 function register(){
    
@@ -69,7 +69,7 @@ function register(){
             //         alertdiv.innerHTML="Mention your university name";
             //     }else{
             //         university=otherUni;
-            //         //alert(university.value);
+            //         alert(university.value);
                     
             //     }
         

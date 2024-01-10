@@ -21,18 +21,20 @@ function workshop01(){
         //alert("hello");
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Select your University";
-    }else if(uni.value=="other" && other.className=="form-control d-none mt-3"){
-        //alert("hello2");
-        other.className="form-control d-block mt-3";
-    }else if(other.className=="form-control d-block mt-3" && other.value.length==0){
-        //alert("hello3");
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Mention your University";
+    }
+    // else if(uni.value=="other" && other.className=="form-control d-none mt-3"){
+    //     //alert("hello2");
+    //     other.className="form-control d-block mt-3";
+    // }else if(other.className=="form-control d-block mt-3" && other.value.length==0){
+    //     //alert("hello3");
+    //     alertdiv.className="alert alert-success d-block";
+    //     alertdiv.innerHTML="Mention your University";
     
-    }else if(other.value.length!==0){
-        uni=other;
-        //alert(uni.value);
-    }else if(name.value.length==0){
+    // }else if(other.value.length!==0){
+    //     uni=other;
+    //     //alert(uni.value);
+    // }
+    else if(name.value.length==0){
         alertdiv.className="alert alert-success d-block";
         alertdiv.innerHTML="Enter your name";
     }else if(mobile.value.length!==10|| mobile.value.length==0){

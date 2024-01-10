@@ -1,15 +1,13 @@
 const select = document.getElementById('select');
 
-
-select.addEventListener('change', function () {
-    for (let otherDiv of document.querySelectorAll('#default div')) {
-        otherDiv.style.display = 'none';
-    }
-    
-    const div = document.getElementById(this.value);
-    div.style.display = 'block';
+$(document).ready(function () {
+    $("#select").change(function () {
+        if ($(this).val() == "3")
+            $(".member-4").slideUp();
+        else
+            $(".member-4").slideDown();
+    });
 });
-
 
 function validateInput(value, errorMessage) {
     var alertdiv = document.getElementById("alert-div");

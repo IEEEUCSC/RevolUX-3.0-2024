@@ -160,3 +160,76 @@ function register() {
             console.error("Error:", error);
         });
 }
+function order(){
+    
+    var alertdiv=document.getElementById("alert-div2");
+    
+    var size =document.getElementById("size");
+    var name=document.getElementById("tname");
+    
+    
+    var email=document.getElementById("temail");
+    var mobile=document.getElementById("tcnum");
+    var address=document.getElementById("tadd");
+    if(size.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Select your size";
+    
+    }else if(name.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Enter your name";
+    
+    }else if(email.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Enter your email";
+    }else if(mobile.value.length==0||mobile.value.length!=10){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Mobile is blank";
+    }else if(address.value.length==0){
+        alertdiv.className="alert alert-success d-block";
+        alertdiv.innerHTML="Enter your address";
+    }else{
+        alertdiv.className="alert alert-success d-none";
+        //alert("success");
+        var form=new FormData;
+        form.append("size",size.value);
+        form.append("name",name.value);
+        form.append("email",email.value);
+        form.append("mobile",mobile.value);
+        form.append("address".address.value);
+
+        var r=new XMLHttpRequest();
+
+        // r.onreadystatechange=function(){
+        //     if(r.readyState==4){
+                
+        //         var t =this.responseText;
+        //         alert(t);
+
+        //         if(t=="Already Ordered"){
+        //             alertdiv.className="alert alert-success d-block";
+        //             alertdiv.innerHTML=t;
+        //         }else if("success"){
+        //             alertdiv.className="alert alert-success d-block";
+        //             alertdiv.innerHTML="Order is placed";
+        //         }else{
+
+        //         }
+                
+                
+             
+                
+        //     }
+        // }
+        // r.open("POST","orderProcess.php",true);
+       
+        r.send(form);
+
+
+
+
+
+
+    }
+    
+}

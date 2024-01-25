@@ -294,5 +294,49 @@
    * Initiate Pure Counter 
    */
   new PureCounter();
+  
+
+  //countDown
+
+  const countDownDate = new Date("Jan 31, 2024 00:00:00").getTime();
+
+  // Update the countdown every 1 second
+  const x = setInterval(function() {
+
+    // Get the current date and time
+    const now = new Date().getTime();
+
+    // Calculate the remaining time
+    const distance = countDownDate - now;
+
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Specify the multiplier for spaces
+    const spaceMultiplier = 7;
+
+    // Generate the non-breaking spaces based on the multiplier
+    const spaces = "&nbsp;".repeat(spaceMultiplier);
+
+    // Set the countdown with increased spaces
+    document.getElementById("countdown").innerHTML = `<span style="font-size: 0.8em;"><strong>${days}</strong></span>&nbsp;<span style="font-size: 0.6em;">DAYS</span>${spaces}
+                                                      <span style="font-size: 0.8em;"><strong>${hours}</strong></span>&nbsp;<span style="font-size: 0.6em;">HOURS</span>${spaces}
+                                                      <span style="font-size: 0.8em;"><strong>${minutes}</strong></span>&nbsp;<span style="font-size: 0.6em;">MINUTES</span>${spaces}
+                                                      <span style="font-size: 0.8em;"><strong>${seconds}</strong></span>&nbsp;<span style="font-size: 0.6em;">SECONDS</span>`;
+
+    // If the countdown is over, display a message
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "EXPIRED";
+    }
+  }, 1000);
+
+  function handleButtonClick(buttonName) {
+    // Handle button click event (customize as needed)
+    alert(`You clicked ${buttonName}`);
+  }
 
 })()

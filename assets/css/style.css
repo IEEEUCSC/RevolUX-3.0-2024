@@ -408,9 +408,19 @@ h6 {
   vertical-align: middle;
 }
 .glitch-container {
-  display: flex;
-  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto; /* Center the container horizontally */
+  font-size: 35px;
+  text-transform: uppercase; /* Convert text to uppercase */
+  color: #38BEA6; /* Set the font color to a blue shade (you can change the color as needed) */
 }
+
+@media (max-width: 600px) {
+  .glitch-container {
+    padding: 10px;
+  }
+}
+
 .background-image {
   width: 90%;
   height: auto;
@@ -2332,7 +2342,149 @@ filter: blur(2px); */
   }
 }
 
+/* styles for newly added hero section before initial round */
 
+#countdown {
+  position: center;
+  font-size: 3em;
+  color: #00FFED; /* Change the font color */
+}
 
+@media (max-width: 768px) {
+  #countdown {
+    font-size: 2em;
+    position: center;
+  }
+}
 
-/* form */
+@media (max-width: 480px) {
+  #countdown {
+    font-size: 1.5em;
+    position: center;
+  }
+}
+
+.buttonContainer {
+  position: absolute;
+  bottom: 40px; /* Adjust the distance from the bottom */
+  left: 50%; /* Center the button horizontally */
+  transform: translateX(-50%);
+  display: flex;
+  
+}
+
+.buttonContainer .inner-border {
+  margin-right: 35px; /* Adjust the margin between buttons */
+  position: relative;
+  
+}
+
+.buttonContainer .inner-border:hover .button {
+  background-color: #00FFED;
+  color: #000000;
+  border-color: #00FFED;
+}
+
+.buttonContainer .inner-border:hover {
+  border-color: #00FFED;
+}
+
+.buttonContainer .inner-border:hover .text-container {
+  color: #00FFED;
+}
+
+.inner-border {
+  width: 150px;
+  height: 150px;
+  padding: 16px 18px;
+  border: 2px solid #ADADAD;
+  border-radius: 10px;
+  color: #ADADAD;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.button {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 35px;
+  height: 35px;
+  background-color: #ADADAD;
+  padding: 2px;
+  border: 2px solid #ADADAD;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.arrow {
+  font-size: 1em;
+  color: transparent;
+}
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 767px) {
+  .buttonContainer {
+    flex-direction: row;
+    position: absolute;
+    bottom: -5px;
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Adjust to center the button */
+    display: flex;
+    
+  }
+
+  .buttonContainer .inner-border {
+    margin-right: 0;
+    margin-right: 35px;
+  }
+}
+
+/* Existing Styles */
+
+/* Additional Styles for Larger Border */
+.inner-border.large-border {
+  width: 200px; /* Adjust the width as needed */
+  height: 150px;
+  margin-left: 550px;
+  
+}
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 767px) {
+  .buttonContainer {
+    position: absolute;
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Adjust to center the button */
+    display: flex;
+    
+  }
+
+  /* Existing Styles */
+
+/* Additional Styles for Larger Border */
+  .inner-border {
+    width: auto; /* Adjust the width as needed */
+    height: 120px; /* Adjust the height as needed */
+    margin-right: 5px;
+    margin-bottom: 15px;
+    font-size: 0.78em;
+  }
+
+  .inner-border.large-border {
+    width: auto; /* Adjust the width as needed */
+    height: 120px; /* Adjust the height as needed */
+    margin-right: 5px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    font-size: 0.78em;
+  }
+  .button {
+    width: 28px; /* Adjust the width as needed for mobile */
+    height: 28px; /* Adjust the height as needed for mobile */
+    padding: 1px; /* Adjust the padding as needed for mobile */
+  }
+
+}
+
+/* end of styles for newly added hero section before initial round */
+

@@ -53,6 +53,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css?ver=2.0" rel="stylesheet">
+  <link rel="stylesheet" href="./revol_form/registerStyle.css" />
 
   
 
@@ -274,7 +275,7 @@
   
             <div class="col-lg-4 col-md-6 portfolio-item filter-web offset-lg-2">
               <div class="portfolio-wrap" style="background-color: transparoffset-lg-4ent;">
-                <img src="assets\img\img\delegatePack\tshirt.jpg" class="img-fluid" alt="" style="height:44.5vh">
+                <img src="assets\img\img\delegatePack\tshirt.jpg" class="img-fluid object-fit-cover" alt="" style="height:44.5vh">
                 <div class="portfolio-info">
                   <h4>TSHIRT</h4>
                   
@@ -290,7 +291,7 @@
   
             <div class="col-lg-4 col-md-6 portfolio-item filter-card">
               <div class="portfolio-wrap">
-                <img src="assets/img/img/delegatePack/sizechart.jpg" class="img-fluid" alt="" style="height:44.5vh">
+                <img src="assets/img/img/delegatePack/sizechart.jpg" class="img-fluid object-fit-contain" alt="" style="height:44.5vh">
                 <div class="portfolio-info">
                   <h4>SIZE CHART</h4>
                   
@@ -302,21 +303,8 @@
               </div>
             </div>
   
-            
-  
-           
-            
-  
-            
-  
-           
-  
           </div>
-  
         </div>
-
-         
-       
         
       </div>
       
@@ -331,9 +319,6 @@
           People's Bank <br/>
           Gampola Branch
          </label>
-         
-         
-
         </div>
         <select class="form-select" aria-label="Default select example" id="size">
           <option selected  value="">Select Size</option>
@@ -356,7 +341,7 @@
          
         </select>
         <input type="file" class="form-control mt-2" id="receipt"/>
-        <div class="alert alert-success d-none" role="alert" id="alert-div2">
+        <div class="alert alert-success d-none mt-1" role="alert" id="alert-div2">
           A simple success alert—check it out!
         </div>
         <button class="btn btn-success mt-2" style="background-color: #5ebd61;width: 100%;"onclick=order();>Order Now</button>
@@ -863,6 +848,8 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="/forms/register/script.js"></script>
   <!-- Template Main JS File -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
   <script src="assets/js/main.js"></script>
   <script src="revol_form/script.js"></script>
 

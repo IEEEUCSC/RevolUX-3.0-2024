@@ -160,76 +160,90 @@ function register() {
             console.error("Error:", error);
         });
 }
-function order(){
-    
-    var alertdiv=document.getElementById("alert-div2");
-    
-    var size =document.getElementById("size");
-    var name=document.getElementById("tname");
-    
-    
-    var email=document.getElementById("temail");
-    var mobile=document.getElementById("tcnum");
-    var address=document.getElementById("tadd");
-    if(size.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Select your size";
-    
-    }else if(name.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Enter your name";
-    
-    }else if(email.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Enter your email";
-    }else if(mobile.value.length==0||mobile.value.length!=10){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Mobile is blank";
-    }else if(address.value.length==0){
-        alertdiv.className="alert alert-success d-block";
-        alertdiv.innerHTML="Enter your address";
-    }else{
-        alertdiv.className="alert alert-success d-none";
+
+function order() {
+
+    var alertdiv = document.getElementById("alert-div2");
+
+    var size = document.getElementById("size");
+    var collection = document.getElementById("collection");
+    var name = document.getElementById("tname");
+
+    var email = document.getElementById("temail");
+    var mobile = document.getElementById("tcnum");
+    var address = document.getElementById("tadd");
+    var receipt = document.getElementById("receipt");
+
+
+    if (size.value.length == 0) {
+        alertdiv.className = "alert alert-success d-block mt-3";
+        alertdiv.innerHTML = "Select your size";
+
+    } else if (name.value.length == 0) {
+        alertdiv.className = "alert alert-success d-block mt-3";
+        alertdiv.innerHTML = "Enter your name";
+
+    } else if (email.value.length == 0) {
+        alertdiv.className = "alert alert-success d-block mt-3";
+        alertdiv.innerHTML = "Enter your email";
+    } else if (mobile.value.length == 0 || mobile.value.length != 10) {
+        alertdiv.className = "alert alert-success d-block mt-3";
+        alertdiv.innerHTML = "Mobile is blank";
+    } else if (address.value.length == 0) {
+        alertdiv.className = "alert alert-success d-block mt-3";
+        alertdiv.innerHTML = "Enter your address";
+    } else {
+        alertdiv.className = "alert alert-success d-none";
         //alert("success");
-        var form=new FormData;
-        form.append("size",size.value);
-        form.append("name",name.value);
-        form.append("email",email.value);
-        form.append("mobile",mobile.value);
-        form.append("address".address.value);
+        var form = new FormData;
+        form.append("size", size.value);
+        form.append("name", name.value);
+        form.append("email", email.value);
+        form.append("mobile", mobile.value);
+        form.append("address", address.value);
+        form.append("collection", collection.value);
 
-        var r=new XMLHttpRequest();
+        form.append("place_order", "place_order");
 
-        // r.onreadystatechange=function(){
-        //     if(r.readyState==4){
-                
-        //         var t =this.responseText;
-        //         alert(t);
+        // append the receipt image
+        var file = receipt.files[0];
+        form.append("receipt", file);
 
-        //         if(t=="Already Ordered"){
-        //             alertdiv.className="alert alert-success d-block";
-        //             alertdiv.innerHTML=t;
-        //         }else if("success"){
-        //             alertdiv.className="alert alert-success d-block";
-        //             alertdiv.innerHTML="Order is placed";
-        //         }else{
+        alertUser("warning", "Please wait while we process your request");
 
-        //         }
-                
-                
-             
-                
-        //     }
-        // }
-        // r.open("POST","orderProcess.php",true);
-       
-        r.send(form);
-
-
-
-
-
+        let url = "https://saliya.me/ieeesb/revolux3/";
+        // let url = "http://127.0.0.1/saliya.me.aws/ieeesb/revolux3/";
+        fetch(url, {
+            method: "POST",
+            body: form,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "200") {
+                    alertdiv.className = "alert alert-success d-block mt-3";
+                    alertdiv.innerHTML = data.desc;
+                    alertUser("success", data.desc);
+                } else if (data.status === "403") {
+                    alertdiv.className = "alert alert-danger d-block mt-3";
+                    alertdiv.innerHTML = data.desc;
+                    alertUser("danger", data.desc);
+                } else if (data.status === "400") {
+                    alertdiv.className = "alert alert-danger d-block mt-3";
+                    alertdiv.innerHTML = data.desc;
+                    alertUser("danger", data.desc);
+                } else {
+                    alertdiv.className = "alert alert-danger d-block mt-3";
+                    alertdiv.innerHTML = "Unexpected response from the server";
+                    alertUser("danger", "Unexpected response from the server");
+                }
+            })
+            .catch(error => {
+                alertdiv.className = "alert alert-danger d-block mt-3";
+                alertdiv.innerHTML = "Error occurred during the request. Please try again later.";
+                alertUser("danger", "Error occurred during the request. Please try again later.");
+                console.error("Error:", error);
+            });
 
     }
-    
+
 }

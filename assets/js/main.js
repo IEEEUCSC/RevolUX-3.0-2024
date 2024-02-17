@@ -298,7 +298,7 @@
 
   //countDown
 
-  const countDownDate = new Date("Jan 31, 2024 00:00:00").getTime();
+  const countDownDate = new Date("Feb 20, 2024 00:00:00").getTime();
 
   // Update the countdown every 1 second
   const x = setInterval(function() {
@@ -322,16 +322,16 @@
     const spaces = "&nbsp;".repeat(spaceMultiplier);
 
     // Set the countdown with increased spaces
-    // document.getElementById("countdown").innerHTML = `<span style="font-size: 0.8em;"><strong>${days}</strong></span>&nbsp;<span style="font-size: 0.6em;">DAYS</span>${spaces}
-    //                                                   <span style="font-size: 0.8em;"><strong>${hours}</strong></span>&nbsp;<span style="font-size: 0.6em;">HOURS</span>${spaces}
-    //                                                   <span style="font-size: 0.8em;"><strong>${minutes}</strong></span>&nbsp;<span style="font-size: 0.6em;">MINUTES</span>${spaces}
-    //                                                   <span style="font-size: 0.8em;"><strong>${seconds}</strong></span>&nbsp;<span style="font-size: 0.6em;">SECONDS</span>`;
+    document.getElementById("countdown").innerHTML = `<span style="font-size: 2em;"><strong>${days}</strong></span>&nbsp&nbsp;<span style="font-size: 1.5em;">DAYS</span>${spaces}
+                                                      <span style="font-size: 2em;"><strong>${hours}</strong></span>&nbsp&nbsp;<span style="font-size: 1.5em;">HOURS</span>${spaces}
+                                                      <span style="font-size: 2em;"><strong>${minutes}</strong></span>&nbsp&nbsp;<span style="font-size: 1.5em;">MINUTES</span>${spaces}
+                                                      <span style="font-size: 2em;"><strong>${seconds}</strong></span>&nbsp&nbsp;<span style="font-size: 1.5em;">SECONDS</span>`;
 
-    // // If the countdown is over, display a message
-    // if (distance < 0) {
-    //   clearInterval(x);
-    //   document.getElementById("countdown").innerHTML = "EXPIRED";
-    // }
+    // If the countdown is over, display a message
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "EXPIRED";
+    }
   }, 1000);
 
   function handleButtonClick(buttonName) {

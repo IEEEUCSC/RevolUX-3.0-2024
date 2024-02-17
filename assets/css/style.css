@@ -2349,25 +2349,20 @@ filter: blur(2px); */
   text-align: center;
 }
 
-/* Styles for desktop view */
+/* Style for desktop view */
 .countdown-item {
-  font-size: 3em;
-  color: #00FFED;
+  font-size: 0.8em;
 }
 
-/* Styles for mobile view */
-@media (max-width: 768px) {
-  #countdown {
-    font-size: 1em; /* Adjust font size for better visibility on smaller screens */
-  }
-
+/* Style for mobile view */
+@media (max-width: 320px) {
   .countdown-item {
     display: inline-block;
     margin: 0 5px; /* Adjust spacing between digits */
-    font-size: 0.5em; /* Adjust font size for better visibility on mobile devices */
-    color: #00FFED; /* Maintain text color */
+    font-size: 1.2em; /* Adjust font size for better visibility on mobile devices */
   }
 }
+
 
 
 .buttonContainer {
